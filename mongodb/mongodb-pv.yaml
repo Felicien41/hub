@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongodb-pv
+spec:
+  capacity:
+    storage: 10Gi  # Ajustez la taille en fonction de votre disque
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce  # Le volume sera monté en lecture-écriture pour un seul pod
+  storageClassName: standard-rwo
+  persistentVolumeReclaimPolicy: Retain  # Gardez le volume même après la suppression du PVC
+  gcePersistentDisk:
+    pdName: "mongodb-disk"  # Nom du disque persistant Google Cloud existant
+    fsType: ext4

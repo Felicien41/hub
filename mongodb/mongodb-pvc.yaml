@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc
+  namespace: mongodb   # Assurez-vous d'utiliser le bon namespace
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: standard-rwo
+  resources:
+    requests:
+      storage: 10Gi   # Demande de 10Go (doit correspondre à la capacité du PV)
+  volumeMode: Filesystem
+  volumeName: mongodb-pv  # Référence au nom du PV créé
